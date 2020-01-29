@@ -4,11 +4,9 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Configuracao extends Model
 {
-    protected $table = "categorias";
-
-
+    protected $table = "configuracoes";
 
     
 }
