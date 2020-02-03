@@ -17,9 +17,9 @@ class CreateBannersTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->string('link')->nullable();
-            $table->integer('posicao');
-            $table->integer('ordem');
-            $table->$table->enum('status', ['A', 'I'])->default(['A']);
+            $table->integer('posicao')->unsigned();
+            $table->integer('ordem')->unsigned();
+            $table->enum('status', ['A', 'I'])->default('A')->comment('Ativo ou Inativo');
             $table->string('imagem');
             $table->timestamps();
         });

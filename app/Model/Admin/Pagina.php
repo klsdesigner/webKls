@@ -4,7 +4,7 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cms extends Model
+class Pagina extends Model
 {
     //
 }

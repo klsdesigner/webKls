@@ -24,7 +24,7 @@ class CreateConfiguracoesTable extends Migration
             $table->text('google_maps')->nullable();
             $table->string('fone')->nullable();
             $table->string('celular')->nullable();
-            $table->$table->enum('whatsapp', ['S', 'N'])->default('N');
+            $table->enum('whatsapp', ['S', 'N'])->default('N');
             $table->string('logotipo')->nullable();
             $table->string('icone')->nullable();
             $table->timestamps();

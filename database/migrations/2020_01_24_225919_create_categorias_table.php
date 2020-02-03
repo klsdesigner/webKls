@@ -15,11 +15,13 @@ class CreateCategoriasTable extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('parent_id')->default(0);
+            $table->integer('parent_id')->unsigned()->default(0);
             $table->string('nome');
             $table->string('ordem');
-            $table->string('status');
+            $table->enum('status', ['A', 'I'])->default('A')->comment('Ativo ou Inativo');
             $table->timestamps();
+
+            $table->index('parent_id');
         }); 
     }   
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCmsTable extends Migration
+class CreatePaginasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,21 @@ class CreateCmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cms', function (Blueprint $table) {
+        Schema::create('paginas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->Integer('categoria_id')->unsigned()->nullable();
+            $table->integer('categoria_id')->unsigned()->default(0);
             $table->string('nome');
             $table->text('conteudo');
             $table->text('link');            
             $table->longText('google_maps')->nullable();
-            $table->enum('status', ['A', 'I'])->default(['A']);
-            $table->integer('ordem');
+            $table->enum('status', ['A', 'I'])->default('A')->comment('Ativo ou Inativo');
+            $table->integer('ordem')->unsigned();
             $table->string('imagem')->nullable();
             $table->timestamps();
 
-            $table->foreign('categoria_id')
-                  ->references('id')
-                  ->on('categorias')
-                  ->onDelete('cascade');
+            // $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+
+
         });
     }
 
@@ -39,6 +38,6 @@ class CreateCmsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cms');
+        Schema::dropIfExists('paginas');
     }
 }
