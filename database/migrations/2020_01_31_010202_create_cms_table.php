@@ -15,7 +15,7 @@ class CreateCmsTable extends Migration
     {
         Schema::create('cms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('categoria_id')->nullable();
+            $table->Integer('categoria_id')->unsigned()->nullable();
             $table->string('nome');
             $table->text('conteudo');
             $table->text('link');            
