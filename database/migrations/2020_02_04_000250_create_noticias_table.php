@@ -20,8 +20,8 @@ class CreateNoticiasTable extends Migration
             $table->longText('descricao');
             $table->longText('materia');
             $table->string('fonte')->comment('Origem da noticia');
-            $table->interger('ordem');
-            $table->enum('status', ['A', 'I'])->nullable()->default(['A'])->comment('Ativo ou Inativo');
+            $table->integer('ordem')->unsigned();
+            $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');
             $table->string('imagem');
             $table->timestamps();
 

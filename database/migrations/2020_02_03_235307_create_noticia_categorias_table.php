@@ -16,7 +16,7 @@ class CreateNoticiaCategoriasTable extends Migration
         Schema::create('noticia_categorias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->longText('descricao')->nullable();
-            $table->integer('posicao')->usigned();
+            $table->integer('posicao')->unsigned();
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');
             $table->timestamps();
         });
