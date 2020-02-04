@@ -15,7 +15,7 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('galeria_id')->usigned();
+            $table->unsignedBigInteger('galeria_id');
             $table->string('nome');
             $table->string('diretorio');
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');

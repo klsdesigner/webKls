@@ -15,7 +15,7 @@ class CreateGaleriasTable extends Migration
     {
         Schema::create('galerias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->interger('pagina_id')->usigned()->nullable();
+            $table->unsignedBigInteger('pagina_id');
             $table->string('nome');
             $table->integer('ordem')->usigned();
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment("Ativo e Inativo");
