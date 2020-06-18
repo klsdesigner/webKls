@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pagina extends Model
+class Social extends Model
 {
     //
 }

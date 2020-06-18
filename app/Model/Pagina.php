@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model\admin;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Galeria extends Model
+class Pagina extends Model
 {
     //
 }

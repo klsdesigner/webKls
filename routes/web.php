@@ -5,12 +5,7 @@
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
-
 
 
 Route::get('/', function () {
@@ -94,13 +89,4 @@ Route::group([
 // Route::get('/admin/configuracao/edit', 'Admin/ConfiguracaoController@edit')->name('admin.configuracao.edit');
 // // Apaga um determinado item do banco
 // Route::get('/admin/configuracao/destroy', 'Admin/ConfiguracaoController@destroy')->name('admin.configuracao.destroy');
-
-
-
-
-
-
-
-
-
 

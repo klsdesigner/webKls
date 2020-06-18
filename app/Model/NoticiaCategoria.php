@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model\admin;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Noticia extends Model
+class NoticiaCategoria extends Model
 {
     //
 }
