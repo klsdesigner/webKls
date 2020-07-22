@@ -13,16 +13,17 @@ class CreatePaginasTable extends Migration
      */
     public function up()
     {
-        Schema::create('paginas', function (Blueprint $table) {
+        Schema::create('page', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('categoria_id')->unsigned()->default(0);
-            $table->string('nome');
-            $table->text('conteudo');
+            $table->integer('category_id')->unsigned()->default(0);
+            $table->string('name');
+            $table->text('content');
             $table->text('link');            
             $table->longText('google_maps')->nullable();
             $table->enum('status', ['A', 'I'])->default('A')->comment('Ativo ou Inativo');
-            $table->integer('ordem')->unsigned();
-            $table->string('imagem')->nullable();
+            $table->integer('order')->unsigned();
+            $table->string('image')->nullable();
+            $table->string('slug');
             $table->timestamps();
 
             // $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
@@ -38,6 +39,6 @@ class CreatePaginasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paginas');
+        Schema::dropIfExists('page');
     }
 }

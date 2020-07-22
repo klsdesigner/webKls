@@ -13,16 +13,17 @@ class CreateGaleriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('galerias', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('pagina_id');
-            $table->string('nome');
-            $table->integer('ordem')->usigned();
+            $table->unsignedBigInteger('page_id');
+            $table->string('name');
+            $table->integer('order')->usigned();
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment("Ativo e Inativo");
-            $table->string('img_capa')->nullable();
+            $table->string('image')->nullable();
+            $table->string('slug');
             $table->timestamps();
 
-            $table->foreign('pagina_id')->references('id')->on('paginas')->onDelete('cascade');
+            $table->foreign('page_id')->references('id')->on('page')->onDelete('cascade');
 
         });
     }
@@ -34,6 +35,6 @@ class CreateGaleriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('galerias');
+        Schema::dropIfExists('galleries');
     }
 }

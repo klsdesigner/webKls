@@ -13,13 +13,14 @@ class CreateSociaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('sociais', function (Blueprint $table) {
+        Schema::create('social', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
+            $table->string('name');
             $table->string('url');
-            $table->integer('ordem');
+            $table->integer('order');
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');
-            $table->string('imagem');
+            $table->string('image');
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateSociaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sociais');
+        Schema::dropIfExists('social');
     }
 }

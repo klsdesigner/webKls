@@ -13,11 +13,12 @@ class CreateNoticiaCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('noticia_categorias', function (Blueprint $table) {
+        Schema::create('news_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->longText('descricao')->nullable();
-            $table->integer('posicao')->unsigned();
+            $table->longText('description')->nullable();
+            $table->integer('position')->unsigned();
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateNoticiaCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('noticia_categorias');
+        Schema::dropIfExists('news_category');
     }
 }

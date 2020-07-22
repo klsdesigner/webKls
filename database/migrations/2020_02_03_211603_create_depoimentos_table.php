@@ -7,18 +7,19 @@ use Illuminate\Support\Facades\Schema;
 class CreateDepoimentosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Depoimento dos Clientes
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('depoimentos', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
+            $table->string('name');
             $table->string('email')->unique();
-            $table->longText('depoimento');
+            $table->longText('comment');
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateDepoimentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('depoimentos');
+        Schema::dropIfExists('feedback');
     }
 }

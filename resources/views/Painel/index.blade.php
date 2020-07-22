@@ -47,7 +47,7 @@
                         <div class="icon">
                         <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="{{ route('painel.usuarios.index') }}" class="small-box-footer">Mais informação <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('painel.index') }}" class="small-box-footer">Mais informação <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

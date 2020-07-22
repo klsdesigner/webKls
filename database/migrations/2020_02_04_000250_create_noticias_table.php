@@ -13,19 +13,20 @@ class CreateNoticiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('noticias', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('categoria_noticia_id');
-            $table->string('titulo');
-            $table->longText('descricao');
-            $table->longText('materia');
-            $table->string('fonte')->comment('Origem da noticia');
-            $table->integer('ordem')->unsigned();
+            $table->unsignedBigInteger('news_category_id');
+            $table->string('title');
+            $table->longText('description');
+            $table->longText('content');
+            $table->string('source')->comment('Origem da noticia');
+            $table->integer('order')->unsigned();
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');
-            $table->string('imagem');
+            $table->string('image');
+            $table->string('slug');
             $table->timestamps();
 
-            $table->foreign('categoria_noticia_id')->references('id')->on('noticia_categorias')->onDelete('cascade');
+            $table->foreign('news_category_id')->references('id')->on('news_category')->onDelete('cascade');
         });
     }
 
@@ -36,6 +37,6 @@ class CreateNoticiasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('noticias');
+        Schema::dropIfExists('news');
     }
 }

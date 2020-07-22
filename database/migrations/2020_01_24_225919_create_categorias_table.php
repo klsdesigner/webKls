@@ -13,12 +13,13 @@ class CreateCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('parent_id')->unsigned()->default(0);
-            $table->string('nome');
-            $table->string('ordem');
+            $table->string('name');
+            $table->string('order');
             $table->enum('status', ['A', 'I'])->default('A')->comment('Ativo ou Inativo');
+            $table->string('slug');
             $table->timestamps();
 
             $table->index('parent_id');
@@ -32,6 +33,6 @@ class CreateCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('category');
     }
 }

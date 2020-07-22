@@ -20,11 +20,13 @@ Route::get('/', 'Home\HomeController@index')->name('home.index');
 Route::group(['namespace' => 'Painel'],  function(){
 
     Route::get('/Painel', 'PainelController@index')->name('painel.index');
-
     
-    Route::get('/Painel/Usuarios', 'UserController@index')->name('painel.usuarios.index');
+    Route::resource('/Painel/Usuarios', 'UserController')->names('painel.user')->parameters(['Usuarios' => 'user']);
+    
+
+    //Route::get('/Painel/Usuarios', 'UserController@index')->name('painel.usuarios.index');
     // Route::get('/Painel/Usuarios', 'UserController@show')->name('painel.usuarios.show');
-    Route::get('/Painel/Usuarios/{user}', 'UserController@edit')->name('painel.usuarios.edit');
+    //Route::get('/Painel/Usuarios/{user}', 'UserController@edit')->name('painel.usuarios.edit');
     // Route::put('/Painel/Usuarios', 'Painel\UserController@update')->name('painel.usuarios.update');
 
 });

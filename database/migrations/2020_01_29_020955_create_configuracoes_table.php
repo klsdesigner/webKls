@@ -13,20 +13,21 @@ class CreateConfiguracoesTable extends Migration
      */
     public function up()
     {
-        Schema::create('configuracoes', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('url')->nullable();
-            $table->text('descricao');
-            $table->text('palavra_chave')->nullable();
-            $table->text('endereco');
+            $table->text('description');
+            $table->text('keyword')->nullable();
+            $table->text('address');
             $table->text('google_maps')->nullable();
-            $table->string('fone')->nullable();
-            $table->string('celular')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('phone_mobile')->nullable();
             $table->enum('whatsapp', ['S', 'N'])->default('N');
             $table->string('logotipo')->nullable();
-            $table->string('icone')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -39,6 +40,6 @@ class CreateConfiguracoesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configuracoes');
+        Schema::dropIfExists('settings');
     }
 }

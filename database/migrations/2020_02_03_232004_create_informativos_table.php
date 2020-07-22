@@ -13,11 +13,12 @@ class CreateInformativosTable extends Migration
      */
     public function up()
     {
-        Schema::create('informativos', function (Blueprint $table) {
+        Schema::create('informative', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
+            $table->string('name');
             $table->string('email')->unique();
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateInformativosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informativos');
+        Schema::dropIfExists('informative');
     }
 }

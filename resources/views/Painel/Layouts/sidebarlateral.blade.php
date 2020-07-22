@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('painel.index') }}" class="brand-link">
-      <img src="{{ asset('AdminLTE/dist/img/logok.png') }}" alt="KlsDesigner" class="img-fluid">
+      <img src="{{ asset('AdminLTE/dist/img/logok.png') }}" alt="KlsDesigner" width="70%" class="img-fluid">
       {{-- <span class="brand-text font-weight-light">KlsDesigner</span> --}}
     </a>
 
@@ -39,7 +39,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('painel.usuarios.index') }}" class="nav-link">
+                <a href="{{ route('painel.user.index') }}" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
                   <p>Usuarios</p>
                 </a>

@@ -15,14 +15,15 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('galeria_id');
-            $table->string('nome');
-            $table->string('diretorio');
+            $table->unsignedBigInteger('gallery_id');
+            $table->string('name');
+            $table->string('directory');
             $table->enum('status', ['A', 'I'])->nullable()->default('A')->comment('Ativo ou Inativo');
-            $table->string('imagem');
+            $table->string('image');
+            $table->string('slug');
             $table->timestamps();
 
-            $table->foreign('galeria_id')->references('id')->on('galerias')->onDelete('cascade');
+            $table->foreign('gallery_id')->references('id')->on('galleries')->onDelete('cascade');
 
         });
     }

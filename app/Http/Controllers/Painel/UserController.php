@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Painel;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
    
     public $request;
-    //private $user;
+    private $user;
     
     /**
-     * Create a new controller instance.
+     * Construtor da classe.
      *
      * @return void
      */
@@ -30,7 +31,8 @@ class UserController extends Controller
      */
     public function index()
     {
-         $users = Auth()->User()->all();   
+   
+        $users = User::all();   
 
         /** Pega Uri da pagina */
         $uri = $this->request->route()->uri(); 
@@ -48,7 +50,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('painel.usuarios.create');
     }
 
     /**
@@ -59,7 +61,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->name;        
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('painel.user.index');
+        
     }
 
     /**
@@ -82,10 +91,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
-    {
-        $user = \App\User()->$user;
-        
-        return view('painel.usuarios.edit', compact('user'));
+    {              
+        return view('painel.usuarios.edit', [ 'user' => $user]);
     }
 
     /**
@@ -97,7 +104,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if(!empty($request->password) ){
+            $user->password =  Hash::make($request->password);
+        }
+
+        $user->save();
+        
+        return redirect()->route('painel.user.index');
     }
 
     /**
@@ -108,6 +124,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('painel.user.index');
     }
 }

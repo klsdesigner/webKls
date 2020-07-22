@@ -28,6 +28,7 @@ class PainelController extends Controller
     public function index()
     {
         $user = Auth()->User();
+        
         return view('painel.index', compact('user'));
     }
   
