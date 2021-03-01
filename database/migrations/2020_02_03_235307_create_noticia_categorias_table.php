@@ -13,7 +13,7 @@ class CreateNoticiaCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_category', function (Blueprint $table) {
+        Schema::create('news_categorys', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->longText('description')->nullable();
             $table->integer('position')->unsigned();
@@ -30,6 +30,6 @@ class CreateNoticiaCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_category');
+        Schema::dropIfExists('news_categorys');
     }
 }

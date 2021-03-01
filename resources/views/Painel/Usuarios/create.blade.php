@@ -5,7 +5,7 @@
     <div class="col-md-12">                
         {{-- Create de Usuários ============================ --}}
         
-        <div class="card card-gray">
+        <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title">Cadastro de Usuário</h3>
             </div>
@@ -13,8 +13,8 @@
             <div class="card-body">
               
 
-                <!-- form start -->
-                <form role="form" action="{{ route('painel.user.store') }}" name="alteracao" method="POST">
+                <!-- form start  -->
+                <form role="form" id="formCreate" name="formCreate" >
                     @csrf                    
                     <div class="card-body">
                         <div class="form-group">
@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="email" class="form-control form-control-sm" id="email" name="email" placeholder="E-mail válido" value="">
+                            <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="E-mail válido" value="">
                         </div>
                         <div class="form-group">
                             <label for="password">Senha</label>
@@ -47,8 +47,8 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="btn">Criar Usuarios</button>
-                    <a href="{{ route('painel.user.index') }}" title="Voltar"> <i class="fa fa-reply text-muted"></i></a>
+                    <button type="submit" class="btn btn-primary" id="btnCreate" name="btnCreate">Criar Usuarios</button>
+                    <a href="{{ route('user.index') }}" title="Voltar"> <i class="fa fa-reply text-muted"></i></a>
                     </div>
                 </form>
 

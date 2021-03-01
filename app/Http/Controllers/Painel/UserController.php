@@ -61,13 +61,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd('$request->name');
+
+        if(!filter_var($request->email, FILTER_VALIDATE_EMAIL)){
+
+            $response['success'] = false;
+            $response['message'] = 'O e-mail informado nâo é válido!';
+            echo json_encode($response);
+            //dd (response()->json($response));
+        }
+
         $user = new User();
         $user->name = $request->name;        
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('painel.user.index');
+        //return redirect()->route('painel.user.index');
+        // $response['success'] = true;           
+        // echo json_encode($response);
+        return response()->json(['message' => 'Dados Registrados com sucesso!']);
         
     }
 
@@ -92,7 +106,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {              
-        return view('painel.usuarios.edit', [ 'user' => $user]);
+        return view('usuarios.edit', [ 'id' => $user]);
     }
 
     /**
@@ -113,7 +127,7 @@ class UserController extends Controller
 
         $user->save();
         
-        return redirect()->route('painel.user.index');
+        return redirect()->route('painel.usuarios.index');
     }
 
     /**
@@ -125,6 +139,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('painel.user.index');
+        return redirect()->route('painel.usuarios.index');
     }
 }

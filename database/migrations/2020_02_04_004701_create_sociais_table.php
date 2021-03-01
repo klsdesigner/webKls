@@ -13,7 +13,7 @@ class CreateSociaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('social', function (Blueprint $table) {
+        Schema::create('sociais', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('url');
@@ -32,6 +32,6 @@ class CreateSociaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social');
+        Schema::dropIfExists('sociais');
     }
 }

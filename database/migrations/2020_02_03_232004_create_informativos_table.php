@@ -13,7 +13,7 @@ class CreateInformativosTable extends Migration
      */
     public function up()
     {
-        Schema::create('informative', function (Blueprint $table) {
+        Schema::create('informatives', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -30,6 +30,6 @@ class CreateInformativosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informative');
+        Schema::dropIfExists('informatives');
     }
 }

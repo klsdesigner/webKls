@@ -12,16 +12,16 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="row mb-3">
-                    <a href="{{ route('painel.user.create') }}" class="btn bg-gradient-success">Novo usuario</a>
+                    <a href="{{ route('user.create') }}" class="btn bg-gradient-success"><i class="fas fa-plus"></i> Novo usuario</a>
                 </div>
-              <table id="example1" class="table table-bordered table-striped table-sm">
+              <table id="userTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
                         <th>E-mail</th>
                         <th>Data</th>
-                        <th>Ação</th>
+                        <th width="7%">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,9 +35,9 @@
                         <td>
                             <div class="row">
                             {{-- {{ route('painel.usuarios.edit', ['user' => $us->id]) }} --}}
-                            <a class="btn btn-primary btn-sm ml-1" href="{{ route('painel.user.edit', ['user' => $us->id]) }}" title="Editar"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-primary btn-sm ml-1" href="{{ route('user.edit', ['id' => $us->id]) }}" title="Editar"><i class="fa fa-edit"></i></a>
                             {{-- <a href="" title="Apagar" class="text-danger"></a> --}}
-                            <form action="{{ route('painel.user.destroy', ['user' => $us->id]) }}" method="POST">
+                            <form action="{{ route('user.destroy', ['id' => $us->id]) }}" method="POST">
                                 @csrf
                                 @method('delete')                                                               
                                 <button type="submit" class="btn btn-danger btn-sm ml-1" name="btn"><i class="fa fa-trash"></i></button>
