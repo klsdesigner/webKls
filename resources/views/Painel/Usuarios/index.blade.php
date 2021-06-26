@@ -17,30 +17,30 @@
               <table id="userTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Data</th>
-                        <th width="7%">Ação</th>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Nome</th>
+                        <th class="text-center">E-mail</th>
+                        <th class="text-center">Data</th>
+                        <th class="text-center" width="8%">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     
-                    @foreach ($users as $us)                                          
+                    @foreach ($users as $user)                                          
                     <tr>
-                        <td>{{ $us['id'] }}</td>
-                        <td>{{$us['name']}}</td>
-                        <td>{{$us['email']}}</td>
-                        <td>{{ date('d/m/Y H:i',  strtotime($us['created_at']) ) }}</td>
+                        <td class="text-center">{{ $user['id'] }}</td>
+                        <td>{{$user['name']}}</td>
+                        <td>{{$user['email']}}</td>
+                        <td class="text-center" widht="8%">{{ date('d/m/Y H:i',  strtotime($user['created_at']) ) }}</td>
                         <td>
-                            <div class="row">
+                            <div class="row text-center">
                             {{-- {{ route('painel.usuarios.edit', ['user' => $us->id]) }} --}}
-                            <a class="btn btn-primary btn-sm ml-1" href="{{ route('user.edit', ['id' => $us->id]) }}" title="Editar"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-primary btn-xs ml-1" href="{{ route('user.edit', ['id' => $user->id]) }}" title="Editar"><i class="fa fa-edit"></i></a>
                             {{-- <a href="" title="Apagar" class="text-danger"></a> --}}
-                            <form action="{{ route('user.destroy', ['id' => $us->id]) }}" method="POST">
+                            <form action="{{ route('user.destroy', ['id' => $user->id]) }}" method="POST">
                                 @csrf
                                 @method('delete')                                                               
-                                <button type="submit" class="btn btn-danger btn-sm ml-1" name="btn"><i class="fa fa-trash"></i></button>
+                                <button type="submit" class="btn btn-danger btn-xs ml-1" name="btn"><i class="fa fa-trash"></i></button>
                             </form>
                         </div>
                         </td>
@@ -49,15 +49,7 @@
                     @endforeach
                     
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Data</th>
-                        <th>Ação</th>
-                    </tr>
-                </tfoot>
+                
               </table>
             </div>
             <!-- /.card-body -->

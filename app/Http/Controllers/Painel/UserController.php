@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -59,29 +61,16 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
 
-        dd('$request->name');
-
-        if(!filter_var($request->email, FILTER_VALIDATE_EMAIL)){
-
-            $response['success'] = false;
-            $response['message'] = 'O e-mail informado nâo é válido!';
-            echo json_encode($response);
-            //dd (response()->json($response));
-        }
-
-        $user = new User();
+        $user = new User;
         $user->name = $request->name;        
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
-
-        //return redirect()->route('painel.user.index');
-        // $response['success'] = true;           
-        // echo json_encode($response);
-        return response()->json(['message' => 'Dados Registrados com sucesso!']);
+        
+        return redirect()->route('user.index');
         
     }
 
@@ -93,8 +82,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-       //$user = Auth()->User();      
-       
+       //$user = Auth()->User();
        //return view('painel.index', compact('user'));
     }
 
@@ -104,9 +92,11 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {              
-        return view('usuarios.edit', [ 'id' => $user]);
+        $user = User::find($id);      
+        
+        return view('painel.usuarios.edit', compact('user'));
     }
 
     /**
@@ -116,8 +106,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
+    public function update(UserUpdateRequest $request, $id)
+    {        
+        $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
 
@@ -127,7 +118,7 @@ class UserController extends Controller
 
         $user->save();
         
-        return redirect()->route('painel.usuarios.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -136,9 +127,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
-        return redirect()->route('painel.usuarios.index');
+        User::find($id)->delete();
+        return redirect()->route('user.index');
     }
 }

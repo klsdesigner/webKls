@@ -1,11 +1,32 @@
 $( function () {    
 
+     // CADASTRAR
+    // $('form[name="formCreate"]').submit(function(event){
+    // $('#btnCreate').click(function(event) {
+    //     event.preventDefault();
+    //     let url = 'http://localhost:8000/painel/usuarios/store';//getEm"{{ route('painel.user.store')  }}"; 
+    //     let data = $('#formCreate').serialize();        
+
+    //     $.ajax({
+    //         url: 'url';
+    //         type: "POST",
+    //         dataType: "json",
+    //         data: data,
+    //         success : function(response) {
+    //             alert(response);
+    //         }
+    //     });
+        
+    // });
+
+    // DATATABLE
     $("#userTable").DataTable({
       "responsive": true,
       "autoWidth": false,
       "columnDefs": [
         { orderable: false, targets: 4 }
       ],
+      "lengthChange": false,
 
       "order": [[0, 'asc']],
       
@@ -153,29 +174,6 @@ $( function () {
     
     });
    
-    
-    // CADASTRAR
-    // $('form[name="formCreate"]').submit(function(event){
-    $('#btnCreate').click(function(event) {
-        event.preventDefault();
-        // action="{{ route('painel.user.store') }}" method="POST"
-       //let data = $('#formCreate').serialize();
-        
-       $.ajax({
-            url:"{{ route('painel.user.store') }}",
-            type: "POST",
-            dataType: "json",
-            data: $('#formCreate').serialize(),
-            success : function(response) {
-                alert(response);
-            }
-        });
-        
-    });
-
-
-
-
 
     // $('#example2').DataTable({
     //   "paging": true,
