@@ -13,7 +13,7 @@ class CreatePaginasTable extends Migration
      */
     public function up()
     {
-        Schema::create('page', function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('category_id')->unsigned()->default(0);
             $table->string('name');
@@ -39,6 +39,6 @@ class CreatePaginasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('page');
+        Schema::dropIfExists('pages');
     }
 }

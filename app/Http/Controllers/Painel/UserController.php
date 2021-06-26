@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -59,15 +61,16 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        $user = new User();
+
+        $user = new User;
         $user->name = $request->name;        
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
-
-        return redirect()->route('painel.user.index');
+        
+        return redirect()->route('user.index');
         
     }
 
@@ -79,8 +82,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-       //$user = Auth()->User();      
-       
+       //$user = Auth()->User();
        //return view('painel.index', compact('user'));
     }
 
@@ -90,9 +92,11 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {              
-        return view('painel.usuarios.edit', [ 'user' => $user]);
+        $user = User::find($id);      
+        
+        return view('painel.usuarios.edit', compact('user'));
     }
 
     /**
@@ -102,8 +106,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
+    public function update(UserUpdateRequest $request, $id)
+    {        
+        $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
 
@@ -113,7 +118,7 @@ class UserController extends Controller
 
         $user->save();
         
-        return redirect()->route('painel.user.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -122,9 +127,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
-        return redirect()->route('painel.user.index');
+        User::find($id)->delete();
+        return redirect()->route('user.index');
     }
 }
